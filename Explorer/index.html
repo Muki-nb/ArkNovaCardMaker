@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explorer Card Builder</title>
+    <link rel="stylesheet" href="myriadpro-font.css">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div>
+            <div class="brand__title">Explorer Card Builder</div>
+            <div class="brand__subtitle">探险家 - 生成器</div>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="preview">
+          <div class="card">
+            <img class="layer layer--bottom" src="img/explorer_buttom.png" alt="bottom" />
+            <div class="layer layer--image-wrap">
+              <img class="layer--image" src="" alt="user" />
+            </div>
+            <div class="layer layer--text" id="cardText"></div>
+            <img class="layer layer--top" src="img/explorer_top.png" alt="top" />
+          </div>
+        </section>
+
+        <section class="editor">
+          <div class="panel">
+            <label class="field">
+              <span>图片</span>
+              <input id="imageInput" type="file" accept="image/*" />
+            </label>
+
+            <label class="field">
+              <span>名称</span>
+              <input id="idInput" type="text" placeholder="探险家名称" maxlength="20" />
+            </label>
+
+            <label class="field">
+              <div class="field__row">
+                <span>图片 - 水平偏移</span>
+                <span class="field__value" id="offsetXValue">0%</span>
+              </div>
+              <input id="offsetX" type="range" min="-100" max="100" step="1" value="0" />
+            </label>
+
+            <label class="field">
+              <div class="field__row">
+                <span>图片 - 垂直偏移</span>
+                <span class="field__value" id="offsetYValue">0%</span>
+              </div>
+              <input id="offsetY" type="range" min="-100" max="100" step="1" value="0" />
+            </label>
+
+            <button id="downloadBtn" class="primary">下载图片</button>
+
+            <div class="divider"></div>
+
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">© 2026 Explorer Cup By Muki</footer>
+    </div>
+
+    <canvas id="exportCanvas" width="745" height="1040" class="hidden"></canvas>
+    <script src="dom2img.js"></script>
+    <script src="domtoimage-helper.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

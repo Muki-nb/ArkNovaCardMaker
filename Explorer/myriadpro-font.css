@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Myriad Pro Bold';
+  src: url('./font/MyriadPro-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
