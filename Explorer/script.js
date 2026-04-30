@@ -217,3 +217,16 @@ const defaultId = "探险家 - 你的名字";
 idInput.value = defaultId;
 cardText.textContent = defaultId;
 cardText.style.display = "flex";
+
+function adjustTextPosition() {
+  const card = document.querySelector('.card');
+  const text = document.querySelector('.layer--text');
+  if (!card || !text) return;
+  // 以设计稿 380*530.47 为基准
+  const left = card.offsetWidth * 10 / 380;
+  const top = card.offsetHeight * 260 / 530.47;
+  text.style.left = left + 'px';
+  text.style.top = top + 'px';
+}
+window.addEventListener('DOMContentLoaded', adjustTextPosition);
+window.addEventListener('resize', adjustTextPosition);
