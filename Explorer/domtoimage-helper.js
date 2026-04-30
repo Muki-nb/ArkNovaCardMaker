@@ -23,7 +23,7 @@ function exportCardWithFixedScale(target, exportWidth = 745, exportHeight = 1040
       target.style.width = originalWidth;
       target.style.height = originalHeight;
       const link = document.createElement('a');
-      link.download = 'exported_card.png';
+      link.download = '探险家.png';
       link.href = dataUrl;
       link.click();
     }).catch(() => {
