@@ -1,0 +1,10 @@
+@media (max-width: 600px) {
+  .page {
+    padding: 8px;
+    gap: 14px;
+  }
+
+  .layer--text {
+    height: 16px;
+  }
+}
