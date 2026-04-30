@@ -151,8 +151,8 @@ body {
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  left: 10px;
-  top: 260px;
+  left: 2.63%; /* 10/380 ≈ 2.63% */
+  top: 49%;   /* 260/530.47 ≈ 49% */
   transform: none;
   min-width: 40px;
   width: max-content;
