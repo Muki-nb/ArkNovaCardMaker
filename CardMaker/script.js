@@ -1,3 +1,5 @@
+const V = "1.0.0"
+
 const imageInput = document.getElementById("imageInput");
 const actionType = document.getElementById("actionType");
 const plusIconInput = document.getElementById("plusIconInput");
@@ -156,7 +158,7 @@ function renderRichText(rawText) {
   html = html.replace(/\{([^}]+)\}/g, (_, token) => {
     const [iconName, value] = token.split("-");
     const safeName = iconName.toLowerCase();
-    const imgSrc = `rich-icon/${safeName}.png?v=${Date.now()}`;
+    const imgSrc = `rich-icon/${safeName}.png?v=${V}`;
     if (!value || safeName === "or") {
       return `<span class="rich-icon" data-icon="${safeName}"><img class="rich-icon__img" src="${imgSrc}" alt="${safeName}" /></span>`;
     }
