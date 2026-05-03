@@ -14,11 +14,6 @@
 }
 
 @font-face {
-    font-family: "Noto Sans SC Black";
-    src: url("./font/NotoSansSc-Black.otf") format("opentype");
-}
-
-@font-face {
     font-family: "Myriad Pro Bold";
     src: url("./font/MyriadPro-Bold.otf") format("opentype");
 }
@@ -214,7 +209,8 @@ body {
   font-size: 16px;
   line-height: 1;
   color: #111;
-  font-family: "Noto Sans SC Black", "Noto Sans SC", "PingFang SC", "Segoe UI", sans-serif;
+  font-family: "Noto Sans SC Black", "Noto Sans SC";
+  font-weight: bold;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -229,7 +225,7 @@ body {
   color: #111;
   font-size: 14px;
   line-height: 2;
-  font-family: "Noto Sans SC", "PingFang SC", "Segoe UI", sans-serif;
+  font-family: "Noto Sans SC";
   font-weight: 400;
   opacity: 0;
   display: flex;
@@ -240,12 +236,12 @@ body {
 }
 
 .layer--ability b {
-  font-family: "Noto Sans SC Black", "Noto Sans SC", "PingFang SC", "Segoe UI", sans-serif;
+  font-family: "Noto Sans SC Black", "Noto Sans SC";
   font-weight: 900;
 }
 
 .text-latin {
-  font-family: "Myriad Pro", "Myriad Pro Bold", "Segoe UI", sans-serif;
+  font-family: "Myriad Pro", "Myriad Pro Bold";
 }
 
 .ability-paragraph {
