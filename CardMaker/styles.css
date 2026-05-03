@@ -282,7 +282,7 @@ body {
 }
 
 .rich-icon[data-icon="strength"] .rich-icon__value {
-  transform: translate(1px, 0px);
+  transform: translate(1px, -1px);
 }
 .rich-icon[data-icon="break"] .rich-icon__value {
   transform: translate(-3px, 8px);
