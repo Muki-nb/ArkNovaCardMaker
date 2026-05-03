@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卡牌生成器</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="media.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">
+          <div>
+            <div class="brand__title">Ark Nova Card Maker</div>
+            <div class="brand__subtitle">卡牌生成器</div>
+          </div>
+        </div>
+        <nav class="tabs">
+          <button class="tab tab--disabled" type="button">动物</button>
+          <button class="tab tab--disabled" type="button">赞助商</button>
+          <button class="tab tab--disabled" type="button">任务卡牌</button>
+          <button class="tab tab--disabled" type="button">终局卡牌</button>
+          <button class="tab tab--active" type="button">行动卡牌</button>
+        </nav>
+      </header>
+
+      <main class="layout">
+        <section class="preview">
+          <div class="card-grid">
+            <div class="card-wrap">
+              <div class="card card--before">
+                <img class="layer layer--back" src="img/action_back_1.png" alt="back" />
+                <div class="layer layer--image-wrap">
+                  <img class="layer--image" src="" alt="user" />
+                </div>
+                <img class="layer layer--scope" src="img/action_scope_1.png" alt="scope" />
+                <img class="layer layer--head" src="img/action_head_1.png" alt="head" />
+                <img class="layer layer--action-plus" src="img/action_plus.png" alt="action plus" />
+                <div class="layer layer--plus-icon-wrap">
+                  <img class="layer--plus-icon" src="" alt="plus icon" />
+                </div>
+                <div class="layer layer--action-name" id="actionNameBefore"></div>
+                <div class="layer layer--ability" id="abilityText"></div>
+                <img class="layer layer--action-icon" src="" alt="action icon" />
+              </div>
+            </div>
+            <div class="card-wrap">
+              <div class="card card--after">
+                <img class="layer layer--back" src="img/action_back_2.png" alt="back" />
+                <div class="layer layer--image-wrap">
+                  <img class="layer--image" src="" alt="user" />
+                </div>
+                <img class="layer layer--scope" src="img/action_scope_2.png" alt="scope" />
+                <img class="layer layer--head" src="img/action_head_2.png" alt="head" />
+                <img class="layer layer--action-plus" src="img/action_plus.png" alt="action plus" />
+                <div class="layer layer--plus-icon-wrap">
+                  <img class="layer--plus-icon" src="" alt="plus icon" />
+                </div>
+                <div class="layer layer--action-name" id="actionNameAfter"></div>
+                <div class="layer layer--ability" id="abilityTextUpgrade"></div>
+                <img class="layer layer--action-icon" src="" alt="action icon" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="editor">
+          <div class="panel">
+            <div class="editor-help" aria-label="富文本帮助">
+              <button class="editor-help__btn" type="button">?</button>
+              <div class="editor-help__popover" role="tooltip">
+                <div class="editor-help__title">支持的富文本</div>
+                <ul class="editor-help__list">
+                  <li>加粗：&lt;b&gt;文字&lt;/b&gt;</li>
+                  <li>常用：钱币 {money:2}、强度 {strength:X}、休息 {break:1}、票 {appeal:3}</li>
+                  <li>分隔：{or}、{line}（升级分割线 {or_2}、{line_2}）</li>
+                  <li>更多图标：敬请期待</li>
+                </ul>
+              </div>
+            </div>
+
+            <label class="field">
+              <span>图片</span>
+              <div class="field__row field__row--input">
+                <input id="imageInput" type="file" accept="image/*" />
+                <button class="ghost" type="button" data-clear="imageInput">清空</button>
+                <button class="ghost" type="button" id="toggleOffset">偏移设置</button>
+              </div>
+            </label>
+
+            <div id="offsetControls" class="hidden">
+              <label class="field">
+                <div class="field__row">
+                  <span>图片 - 水平偏移</span>
+                  <span class="field__value" id="offsetXValue">0%</span>
+                </div>
+                <input id="offsetX" type="range" min="-100" max="100" step="1" value="0" />
+              </label>
+
+              <label class="field">
+                <div class="field__row">
+                  <span>图片 - 垂直偏移</span>
+                  <span class="field__value" id="offsetYValue">0%</span>
+                </div>
+                <input id="offsetY" type="range" min="-100" max="100" step="1" value="0" />
+              </label>
+            </div>
+
+            <label class="field">
+              <span>行动类型</span>
+              <select id="actionType">
+                <!-- <option value="animal">动物</option> -->
+                <option value="sponsor">赞助商</option>
+                <option value="association">协会</option>
+                <option value="build">建造</option>
+                <!-- <option value="card">卡牌</option> -->
+              </select>
+            </label>
+
+            <div class="divider"></div>
+
+            <label class="field">
+              <span>变体图标</span>
+              <div class="field__row field__row--input">
+                <input id="plusIconInput" type="file" accept="image/*" />
+                <button class="ghost" type="button" data-clear="plusIconInput">清空</button>
+              </div>
+            </label>
+
+            <div class="field">
+              <div class="field__row field__row--ability">
+                <span>能力</span>
+                <div class="button-group">
+                  <button class="ghost" type="button" data-add="ability">+ 段落</button>
+                  <button class="ghost" type="button" data-remove="ability">- 段落</button>
+                </div>
+              </div>
+              <div class="paragraph-list" id="abilityList"></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <label class="field">
+              <span>变体图标 - 升级后</span>
+              <div class="field__row field__row--input">
+                <input id="upgradePlusIconInput" type="file" accept="image/*" />
+                <button class="ghost" type="button" data-clear="upgradePlusIconInput">清空</button>
+                <button class="ghost" type="button" id="syncPlusIcon">同步Ⅰ级图标</button>
+              </div>
+            </label>
+
+            <div class="field">
+              <div class="field__row field__row--ability">
+                <span>升级能力</span>
+                <div class="button-group">
+                  <button class="ghost" type="button" data-add="upgrade">+ 段落</button>
+                  <button class="ghost" type="button" data-remove="upgrade">- 段落</button>
+                </div>
+              </div>
+              <div class="paragraph-list" id="upgradeAbilityList"></div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="button-row">
+              <button id="downloadBeforeBtn" class="primary" type="button">下载升级前</button>
+              <button id="downloadAfterBtn" class="primary" type="button">下载升级后</button>
+            </div>
+
+            <div class="divider"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">© 2026 Ark Nova Card Maker</footer>
+    </div>
+
+    <script src="dom2img.js"></script>
+    <script src="domtoimage-helper.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
