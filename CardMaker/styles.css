@@ -13,6 +13,16 @@
   --img-pos-y: 50%;
 }
 
+@font-face {
+    font-family: "Noto Sans SC Black";
+    src: url("fonts/NotoSansSC-Black.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Myriad Pro Bold";
+    src: url("fonts/MyriadPro-Bold.otf") format("opentype");
+}
+
 * {
   box-sizing: border-box;
   font-family: "Inter", "Segoe UI", "PingFang SC", sans-serif;
