@@ -202,7 +202,8 @@ function renderRichText(rawText) {
     const value = dashIndex === -1 ? undefined : token.slice(dashIndex + 1);
     const safeName = iconName.toLowerCase();
     const imgSrc = withVersion(`rich-icon/${safeName}.png`);
-    if (!value || safeName === "or") {
+    const noValueIcons = new Set(["or", "or_2", "line", "line_2", "x", "x2", "take", "upgrade", "mark", "clever"]);
+    if (!value || noValueIcons.has(safeName)) {
       return `<span class="rich-icon" data-icon="${safeName}"><img class="rich-icon__img" src="${imgSrc}" alt="${safeName}" /></span>`;
     }
     const valueClass = safeName === "appeal" ? "rich-icon__value rich-icon__value--dark" : "rich-icon__value";
