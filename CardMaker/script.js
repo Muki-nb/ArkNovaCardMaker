@@ -329,7 +329,7 @@ const defaultAction_1= {
     animal: [""],
     sponsor: ["打出1张赞助商卡牌，最高等级为{strength-X}。","{or}", "休息{break-X}，获得{money-X}。","{line}"],
     association: ["执行 <b>1项协会任务</b>且最大任务强度为{strength-X}。"],
-    build: ["建造 <b>1个建筑</b>，最高面积为{strength-X}。", "为每个六角格支付{money-2}。", "可建建筑：<b>贩售亭</b>，<b>休憩亭</b>，<b>海洋馆</b>，\n<b>标准饲养区</b>以及<b>萌宠园</b>。"],
+    build: ["建造 <b>1个建筑</b>，最高面积为{strength-X}。", "为每个六角格支付{money-2}。", "可造建筑：<b>贩售亭</b>，<b>休憩亭</b>，<b>海洋馆</b>，\n<b>标准饲养区</b>以及<b>萌宠园</b>。"],
     card: [""],
 };
 
@@ -337,7 +337,7 @@ const defaultAction_2 = {
     animal: [""],
     sponsor: ["打出<b>1张或多张</b>赞助商卡牌，最高等级总和为{strength-X}+1。","{or_2}", "休息{break-X}，获得 2x{money-X}。","{line_2}"],
     association: ["执行 <b>1项或多项不同的协会任务</b>且最大任务强度总和为{strength-X}。", "另外，你可以进行1次<b>捐赠</b>。"],
-    build: ["建造 <b>1个或多个不同的建筑</b>，最高面积总和为{strength-X}。", "为每个六角格支付{money-2}。", "新增可建建筑：<b>鸟禽馆</b>和<b>爬行馆</b>。"],
+    build: ["建造 <b>1个或多个不同的建筑</b>，最高面积总和为{strength-X}。", "为每个六角格支付{money-2}。", "新增可造建筑：<b>鸟禽馆</b>和<b>爬行馆</b>。"],
     card: [""],
 };
 
