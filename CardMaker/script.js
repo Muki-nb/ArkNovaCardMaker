@@ -197,7 +197,9 @@ function renderRichText(rawText) {
   }
   html = html.replace(/\{([a-zA-Z0-9_]+):([^}]+)\}/g, "{$1-$2}");
   html = html.replace(/\{([^}]+)\}/g, (_, token) => {
-    const [iconName, value] = token.split("-");
+    const dashIndex = token.indexOf("-");
+    const iconName = dashIndex === -1 ? token : token.slice(0, dashIndex);
+    const value = dashIndex === -1 ? undefined : token.slice(dashIndex + 1);
     const safeName = iconName.toLowerCase();
     const imgSrc = withVersion(`rich-icon/${safeName}.png`);
     if (!value || safeName === "or") {
@@ -216,7 +218,7 @@ function renderRichText(rawText) {
         entities.push(entity);
         return String.fromCharCode(0xe000 + entities.length - 1);
       });
-      safe = safe.replace(/([A-Za-z0-9]+)/g, "<span class=\"text-latin\">$1</span>");
+      safe = safe.replace(/([A-Za-z0-9+-]+)/g, "<span class=\"text-latin\">$1</span>");
       return safe
         .replace(/[\uE000-\uF8FF]/g, (marker) => {
           const index = marker.charCodeAt(0) - 0xe000;

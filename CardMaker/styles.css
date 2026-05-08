@@ -275,7 +275,9 @@ body {
   font-size: 14px;
   font-weight: 700;
   color: #ffffff;
+  font-family: "Myriad Pro", "Myriad Pro Bold", "Inter", "Segoe UI", "PingFang SC", sans-serif;
   pointer-events: none;
+  text-align: center;
 }
 
 .rich-icon__value--dark {
@@ -294,14 +296,24 @@ body {
   transform: translate(-3px, 8px);
 }
 .rich-icon[data-icon="money"] .rich-icon__value {
-  transform: translate(0px, -1px);
+  transform: translate(0px, 0px);
 }
-
 
 .rich-icon[data-icon="money"] .rich-icon__value {
   font-size: 17px;
 }
-
+.rich-icon[data-icon="enclosure"] .rich-icon__value {
+  font-size: 19.6px;
+  transform: translate(0px, 0px);
+}
+.rich-icon[data-icon="conservation"] .rich-icon__value {
+  font-size: 17px;
+  color: black;
+  transform: translate(0px, -1px);
+}
+.rich-icon[data-icon="reputation"] .rich-icon__value {
+  transform: translate(1px, 0px);
+}
 
 .rich-icon[data-icon="strength"]{
   transform: translate(0px, -2px);
@@ -316,6 +328,38 @@ body {
 }
 
 .rich-icon[data-icon="appeal"]{
+  transform: translate(0px, -3px);
+}
+
+.rich-icon[data-icon="x"]{
+  transform: translate(0px, -2px);
+}
+
+.rich-icon[data-icon="enclosure"]{
+  transform: translate(0px, -3px);
+}
+
+.rich-icon[data-icon="clever"]{
+  transform: translate(0px, -3px);
+}
+
+.rich-icon[data-icon="reputation"]{
+  transform: translate(0px, -2px);
+}
+
+.rich-icon[data-icon="mark"]{
+  transform: translate(0px, -3px);
+}
+
+.rich-icon[data-icon="upgrade"]{
+  transform: translate(0px, -3px);
+}
+
+.rich-icon[data-icon="take"]{
+  transform: translate(0px, -3px);
+}
+
+.rich-icon[data-icon="x2"]{
   transform: translate(0px, -3px);
 }
 
