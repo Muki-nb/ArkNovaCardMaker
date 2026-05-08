@@ -1,4 +1,17 @@
-const V = "1.0.0"
+const V = window.APP_VERSION || "1.0.0";
+const withVersion = window.withVersion || ((url) => {
+  if (!url) return url;
+  if (/^(data:|blob:)/i.test(url)) return url;
+  const hasVersion = /[?&]version=/.test(url);
+  if (hasVersion) {
+    return url.replace(/[?&]version=[^&]*/i, (match) => {
+      const prefix = match.startsWith("?") ? "?" : "&";
+      return `${prefix}version=${encodeURIComponent(V)}`;
+    });
+  }
+  const joiner = url.includes("?") ? "&" : "?";
+  return `${url}${joiner}version=${encodeURIComponent(V)}`;
+});
 
 const imageInput = document.getElementById("imageInput");
 const actionType = document.getElementById("actionType");
@@ -144,6 +157,20 @@ function escapeHtml(text) {
     .replace(/'/g, "&#39;");
 }
 
+function sanitizeColorValue(value) {
+  const normalized = value.trim();
+  if (/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(normalized)) {
+    return normalized;
+  }
+  if (/^(rgb|rgba|hsl|hsla)\([0-9\s.,%]+\)$/.test(normalized)) {
+    return normalized;
+  }
+  if (/^[a-zA-Z]+$/.test(normalized)) {
+    return normalized;
+  }
+  return null;
+}
+
 function renderRichText(rawText) {
   let html = escapeHtml(rawText);
   html = html
@@ -154,11 +181,25 @@ function renderRichText(rawText) {
   if (hasBoldPair) {
     html = html.replace(/&lt;b&gt;/g, "<b>").replace(/&lt;\/b&gt;/g, "</b>");
   }
+  const hasItalicPair = rawText.includes("<i>") && rawText.includes("</i>");
+  if (hasItalicPair) {
+    html = html.replace(/&lt;i&gt;/g, "<i>").replace(/&lt;\/i&gt;/g, "</i>");
+  }
+  const hasColorPair = rawText.includes("<color=") && rawText.includes("</color>");
+  if (hasColorPair) {
+    html = html
+      .replace(/&lt;color=([^&]+?)&gt;/g, (_, colorValue) => {
+        const safeColor = sanitizeColorValue(colorValue);
+        if (!safeColor) return `&lt;color=${colorValue}&gt;`;
+        return `<span class="rich-color" style="color:${safeColor}">`;
+      })
+      .replace(/&lt;\/color&gt;/g, "</span>");
+  }
   html = html.replace(/\{([a-zA-Z0-9_]+):([^}]+)\}/g, "{$1-$2}");
   html = html.replace(/\{([^}]+)\}/g, (_, token) => {
     const [iconName, value] = token.split("-");
     const safeName = iconName.toLowerCase();
-    const imgSrc = `rich-icon/${safeName}.png?v=${V}`;
+    const imgSrc = withVersion(`rich-icon/${safeName}.png`);
     if (!value || safeName === "or") {
       return `<span class="rich-icon" data-icon="${safeName}"><img class="rich-icon__img" src="${imgSrc}" alt="${safeName}" /></span>`;
     }
